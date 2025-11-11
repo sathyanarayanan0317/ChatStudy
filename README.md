@@ -2,6 +2,8 @@
 
 ## Aim: 
 To perform a study on Client Server Chat Applications
+SATHYNARAYANAN M
+212224040300
 ## Introduction:
 Client-server chat applications are a category of networked software that enables real-time communication between users over a network. This study explores the key components, architecture, and considerations in the development of client-server chat applications, highlighting their significance and common implementation practices.
 Client-server chat applications are software systems that enable real-time communication between users over a network. These applications follow a client-server model, where one component (the server) manages connections and facilitates communication, while the other component (the client) interacts with the server to send and receive messages. Below are the fundamental aspects and components involved in the basics of client-server chat applications:
@@ -43,7 +45,21 @@ Client-server chat applications are software systems that enable real-time commu
 ## Architecture:
 ## Client-Server Model:
 Client-server chat applications typically follow the client-server model, where one entity acts as the server, managing connections and facilitating communication, and one or more entities act as clients, initiating communication with the server.
-
+```
+import socket
+from datetime import datetime
+s=socket.socket()
+s.bind(('localhost',8000))
+s.listen(5)
+c,addr=s.accept()
+print("Client Address : ",addr)
+now = datetime.now()
+c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
+ack=c.recv(1024).decode()
+if ack:
+    print(ack)
+c.close()
+```
 ## Communication Protocols:
 The choice of communication protocol is crucial. Many chat applications use TCP (Transmission Control Protocol) for reliable, connection-oriented communication to ensure the ordered and error-free exchange of messages.
 User Authentication:
@@ -54,7 +70,14 @@ User authentication mechanisms are essential to ensure secure and authorized acc
 •	Socket Handling: The server manages incoming client connections using sockets, creating a separate thread or process for each connected client.
 •	User Management: Maintaining information about connected users, their status, and handling login/logout functionality.
 •	Message Routing: Implementing logic to route messages from one client to another, ensuring proper delivery.
-
+```
+import socket
+s=socket.socket()
+s.connect(('localhost',8000))
+print(s.getsockname())
+print(s.recv(1024).decode())
+s.send("acknowledgementrecivedfromtheserver".encode())
+```
 ## Considerations in Development:
 1.	Concurrency and Multithreading:
 •	Chat applications often require handling multiple connections simultaneously. The server must be designed to support concurrency, commonly achieved through multithreading or asynchronous programming.
@@ -75,6 +98,7 @@ Client-server chat applications are foundational to real-time communication over
 
 
 ## Result:
+<img width="1046" height="166" alt="image" src="https://github.com/user-attachments/assets/dc52a562-015f-4b7c-8563-92a94afad534" />
 
 Thus the study on Client Server Chat Applications has been performed
 
